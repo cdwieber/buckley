@@ -10,6 +10,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Transaction extends Model
 {
+    protected $fillable = [
+        'amount',
+        'description',
+        'user_id',
+        'account_id',
+        'memo',
+    ];
+
     /**
      * Mutator to whole currency.subcurrency (i.e. cents -> dollars.cents)
      *
@@ -35,7 +43,7 @@ class Transaction extends Model
     }
 
     /**
-     * User relationshop
+     * User relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
