@@ -14,7 +14,8 @@ class Bill extends Model
         'rrule'
     ];
     /**
-     * Mutator to whole currency.subcurrency (i.e. cents -> dollars.cents)
+     * Mutator to whole currency.subcurrency (i.e. cents -> dollars.cents).
+     * Also ensure that we're only dealing with unsigned integers.
      *
      * @param $amount
      *
@@ -22,18 +23,25 @@ class Bill extends Model
      */
     public function getAmountAttribute($amount)
     {
+        if ($amount < 0) {
+            $amount = abs($amount);
+        }
         return $amount / 100;
     }
 
     /**
      * Mutator from whole currency to subcurrency (i.e. dollars.cents -> cents)
+     * Also ensure that we're only dealing with unsigned integers.
      *
      * @param $amount
      *
-     * @return float|int
+     * @return int
      */
     public function setAmountAttribute($amount)
     {
+        if ($amount < 0) {
+            $amount = abs($amount);
+        }
         return $amount * 100;
     }
 

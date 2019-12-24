@@ -17,7 +17,7 @@ class CreateBillsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('description');
-            $table->integer('amount');
+            $table->integer('amount')->unsigned();
             $table->date('first_date');
             $table->date('last_date');
             $table->date('next_date');

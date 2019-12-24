@@ -20,6 +20,9 @@ class Expense extends Model
      */
     public function getAmountAttribute($amount)
     {
+        if ($amount < 0) {
+            $amount = abs($amount);
+        }
         return $amount / 100;
     }
 
@@ -32,6 +35,9 @@ class Expense extends Model
      */
     public function setAmountAttribute($amount)
     {
+        if ($amount < 0) {
+            $amount = abs($amount);
+        }
         return $amount * 100;
     }
 
