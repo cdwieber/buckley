@@ -22,6 +22,10 @@ class CreateIncomeRecurringsTable extends Migration
             $table->date('last_date');
             $table->date('next_date');
             $table->string('rrule'); //recurrance rule
+            $table->bigInteger('user_id')->unsigned();
+        });
+        Schema::table('income_recurrings', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

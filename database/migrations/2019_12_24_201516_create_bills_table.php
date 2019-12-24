@@ -21,7 +21,12 @@ class CreateBillsTable extends Migration
             $table->date('first_date');
             $table->date('last_date');
             $table->date('next_date');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('rrule'); //recurrance rule
+        });
+
+        Schema::table('bills', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -29,14 +29,15 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
             $table->string('nickname');
             $table->string('institution');
-            $table->enum( 'type', $types );
+            $table->enum( 'type', $types )->default('checking');
             $table->boolean('is_liability')->nullable();
             $table->bigInteger('max')->nullable();
             $table->float('interest', 5, '2')->nullable();
             $table->integer('balance');
-            $table->bigInteger('user_id');
-
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->bigInteger('user_id')->unsigned();
+        });
+        Schema::table('accounts', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

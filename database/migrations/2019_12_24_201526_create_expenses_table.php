@@ -18,6 +18,10 @@ class CreateExpensesTable extends Migration
             $table->timestamps();
             $table->integer('amount')->unsigned();
             $table->date('date');
+            $table->bigInteger('user_id')->unsigned();
+        });
+        Schema::table('expenses', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -18,6 +18,11 @@ class CreateIncomeSinglesTable extends Migration
             $table->timestamps();
             $table->integer('amount');
             $table->date('date');
+            $table->bigInteger('user_id')->unsigned();
+        });
+
+        Schema::table('income_singles', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -19,9 +19,11 @@ class CreateTransactionsTable extends Migration
             $table->string('description');
             $table->string('memo');
             $table->integer('amount'); // Amount in lowest currency denom (i.e. cents)
-            $table->bigInteger('user_id');
-            $table->bigInteger('account_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('account_id')->unsigned();
+        });
 
+        Schema::table('transactions', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('account_id')->references('id')->on('accounts');
         });
