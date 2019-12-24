@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class IncomeRecurring extends Model
 {
+    protected $fillable = [
+        'amount',
+        'date',
+        'first_date',
+        'last_date',
+        'next_date',
+        'rrule',
+    ];
     /**
      * Mutator to whole currency.subcurrency (i.e. cents -> dollars.cents)
      *
@@ -28,5 +36,14 @@ class IncomeRecurring extends Model
     public function setAmountAttribute($amount)
     {
         return $amount * 100;
+    }
+
+    /**
+     * User relationshop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->BelongsTo('App\User');
     }
 }

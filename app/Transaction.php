@@ -33,4 +33,13 @@ class Transaction extends Model
     {
         return $amount * 100;
     }
+
+    /**
+     * User relationshop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
+    protected $fillable = [
+        'amount',
+        'date',
+    ];
+
     /**
      * Mutator to whole currency.subcurrency (i.e. cents -> dollars.cents)
      *
@@ -28,5 +33,14 @@ class Expense extends Model
     public function setAmountAttribute($amount)
     {
         return $amount * 100;
+    }
+
+    /**
+     * User relationshop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->BelongsTo('App\User');
     }
 }

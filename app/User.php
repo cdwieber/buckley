@@ -36,4 +36,58 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Account Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function accounts() {
+        return $this->hasMany('App\Account');
+    }
+
+    /**
+     * Transaction Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions() {
+        return $this->hasMany('App\Transaction');
+    }
+
+    /**
+     * Bill Relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bills() {
+        return $this->hasMany('App\Bill'); // :(
+    }
+
+    /**
+     * Single Income relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function incomeSingles() {
+        return $this->hasMany('App\IncomeSingle');
+    }
+
+    /**
+     * Recurring income relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function incomeRecurrings() {
+        return $this->hasMany('App\IncomeRecurring');
+    }
+
+    /**
+     * Expense relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function expenses() {
+        return $this->hasMany('App\Expense');
+    }
 }
