@@ -16,8 +16,14 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('description');
             $table->string('memo');
-            $table->bigInteger('amount'); // Amount in lowest currency denom (i.e. cents)
+            $table->integer('amount'); // Amount in lowest currency denom (i.e. cents)
+            $table->bigInteger('user_id');
+            $table->bigInteger('account_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('account_id')->references('id')->on('accounts');
         });
     }
 

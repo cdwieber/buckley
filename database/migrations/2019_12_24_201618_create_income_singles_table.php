@@ -16,6 +16,8 @@ class CreateIncomeSinglesTable extends Migration
         Schema::create('income_singles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('amount');
+            $table->date('date');
         });
     }
 

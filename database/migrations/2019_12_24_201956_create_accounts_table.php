@@ -13,9 +13,30 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        $types = [
+            'checking',
+            'savings',
+            'credit_card',
+            'loc',
+            'personal_loan',
+            'auto_loan',
+            'mortgage',
+            'investment',
+        ];
+
+        Schema::create('accounts', function (Blueprint $table) use ( $types ) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('nickname');
+            $table->string('institution');
+            $table->enum( 'type', $types );
+            $table->boolean('is_liability')->nullable();
+            $table->bigInteger('max')->nullable();
+            $table->float('interest', 5, '2')->nullable();
+            $table->integer('balance');
+            $table->bigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 

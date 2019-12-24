@@ -16,6 +16,12 @@ class CreateIncomeRecurringsTable extends Migration
         Schema::create('income_recurrings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('description');
+            $table->integer('amount');
+            $table->date('first_date');
+            $table->date('last_date');
+            $table->date('next_date');
+            $table->string('rrule'); //recurrance rule
         });
     }
 
